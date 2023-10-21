@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <div>
+        <a href="{{url_for('index')}}">Home </a><br>
+    </div>
+<head>
+    <link rel="stylesheet" href="../static/css/table_styles.css">
+    <h1>Dashboard</h1>
+</head>
+
+    <p>List of your Bookmarks</p>
+<table>
+    <tr>
+        <th>Url</th>
+        <th>Video Title</th>
+        <th>Channel Name</th>
+    </tr>
+    <tr>
+        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
+        <td>Django Tutorials</td>
+        <td>Corey Schafer Jamillah Mohamed</td>
+    </tr>
+        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p100203fuhjbcv</td>
+        <td>Django Tutorials</td>
+        <td>Corey Schafer</td>
+    <tr>
+        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
+        <td>Django Tutorials</td>
+        <td>Corey Schafer</td>
+    </tr>
+    <tr>
+        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
+        <td>Django Tutorials comming home</td>
+        <td>Corey Schafer techtember</td>
+    </tr>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<head>
+    <a href="{{url_for('index')}}">Home</a><br>
+    <link rel="stylesheet" href="../static/css/table_styles.css">
+    <h1 class="signup">Sign in</h1>
+</head>
+<body>
+    <!-- Sing in area -->
+    <div class="containers">
+        <form class="signin_form">
+            <div>
+                <div>
+                    <input class="email" type="text" placeholder="email address" name="email">
+                </div>
+                <div>
+                    <input class="email" name="password" type="password" placeholder="Password" name="password">
+                </div>
+                <div>
+                    <button class="button">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+                <div class="account_register">
+                    <a href="{{url_for('signup')}}">Don't have an account? Register</a><br>
+                </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
