@@ -2,7 +2,7 @@
 
 ## Overview
 
-YouTube Book is a website that helps users bookmark youtube videos so they can
+YouTube Book is a website that helps users bookmark youtube videos so they can.
 be able to watch them later without having to log into YouTube.
 This solution is intended to users who wants to save some YouTube Videos for
 watch later but do not want YouTube profiling their interests.
@@ -16,7 +16,7 @@ watch later but do not want YouTube profiling their interests.
     - This will show you a table format of your bookmarks.
     - Click on the video name under the video title column.
     - This will redirect you to openning the video in another tab for
-    for you to watch.
+    you to watch.
 - Click on the delete to delete the bookmark.
 - Click on the channel name to open the channel in YouTube.
 
