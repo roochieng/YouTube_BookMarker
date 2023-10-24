@@ -1,27 +1,20 @@
 from collections.abc import Mapping, Sequence
 from typing import Any
-from config import db
 from datetime import datetime
-from flask import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
-from config import app
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import Length, ValidationError, DataRequired, Email, EqualTo
-from flask_login import login_user, LoginManager, login_required, logout_user, current_user
-from . import User
+from flask_login import login_user, login_required, logout_user, current_user
+from models.storage import User, BookMarks
+from email_validator import validate_email, EmailNotValidError
+from pytube import YouTube, Playlist, Channel
+from pytube.exceptions import VideoUnavailable
 
 
-login_manager = LoginManager
-# login_manager.init_app(app=app)
-login_manager.login_view = 'login'
-
-@login_manager.user_loader
-def load_user(user_id):
-    return(User.query.get(int(user_id)))
-
-
+    
 class RegistrationForm(FlaskForm):
     """ Registration method to allow user creat an account.
     Validates if the account meets the requirements, and creates the account
@@ -39,7 +32,7 @@ class RegistrationForm(FlaskForm):
                                          Length(min=6, max=20)],
                                     render_kw={"placeholder": "password"})
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
-                                    render_kw={"placeholder": "password"})
+                                    render_kw={"placeholder": "confirm password"})
     submit = SubmitField("Register")
 
 
@@ -52,9 +45,15 @@ class RegistrationForm(FlaskForm):
         Raises:
             ValidationError: _The error to raise if email exists_
         """
+        try:
+            valid = validate_email(email.data)
+            email.data = valid.email
+        except EmailNotValidError as e:
+            raise ValidationError('Invalid email address')
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('The email address is registered, log in or register with another email')
+        
 
 
 class LoginForm(FlaskForm):
@@ -68,3 +67,9 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()],
                                     render_kw={"placeholder": "password"})
     submit = SubmitField("Sign in")
+
+
+class UrlBookmark(FlaskForm):
+    url = StringField('Video url', validators=[DataRequired()],
+                      render_kw={"placeholder": "youtube video url"})
+    submit = SubmitField('Bookmark')

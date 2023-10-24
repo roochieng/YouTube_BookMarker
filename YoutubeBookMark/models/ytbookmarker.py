@@ -1,13 +1,13 @@
 import requests
 from pytube import YouTube, Channel, Playlist
-from pytube.exceptions import VideoUnavailable
+from pytube.exceptions import VideoUnavailable, RegexMatchError
 from PIL import Image
 
 class YouTubeBookMarker:
     """
     System that bookmarks youtube video url and saves in a website
     """
-    def __init__(self, url: str, title: str, channel_name: str, thumbnail):
+    def __init__(self, url):
         """Initialize the YouTubeBookMarker class
 
         Args:
@@ -16,45 +16,70 @@ class YouTubeBookMarker:
             user login detials
         """
         self.url = url
-        self.title = self.get_title
-        self.thumbnail = self.get_thumbnail
-        self.channel_name = self.get_channel_name
+        self.video = self.get_url()
+        self.title = self.get_title()
+        self.channel_name = self.get_channel_name()
+    
+    def __repr__(self):
+        return(f"'url': '{self.url}', 'video name': '{self.title}', 'channel name': '{self.channel_name}'")
 
+    # bookmarks = {}
 
-    def get_url(self, url) -> str:
-        """get url link of the vidoe. Includes playlist link
+    def get_url(self) -> str:
+        """get url link of the vidoe. does not includes playlist link for now
         """
-        try:
-            url = str(input("Copy and Paste the YouTube link here!"))
-        except VideoUnavailable:
-            print(f'No video with the link, cannot bookmark.')
+        if '.com/watch?' in self.url:
+            self.video = YouTube(self.url)
+            return(self.video)
         else:
-            return(url)
+            return None
 
     # get the video detials like title and thumbnail
     # author
-    def get_title(self, url) -> str:
-        return (self.get_url.title)
+
+    def get_title(self) -> str:
+        # Get the video name
+        if self.get_url():
+            author = self.get_url().title
+        else:
+            author = 'No video found.'
+        return(author)
     
+
+    def get_channel_name(self) -> str:
+        if self.get_url():
+            # Get the author of the video
+            author = self.get_url().author
+        else:
+            author = 'No Channel Name found'
+        return (author)
+    
+
+    # For future updates
+    """
     def get_thumbnail(self, url):
+        # Get the video thumbnail
         resized_image = self.get_url.thumbnail.resize((100, 100))
         return (resized_image)
     
-    def get_channel_name(self, url) -> str:
-        return(self.get_url.author)
-    
-    def check_if_playlist(self) -> bool:
-        if "list=" in self.get_url:
-            return True
 
-    def get_playlist_url(self):
-        if self.check_if_playlist():
+    def get_playlist(self, url):
+        if "list=" in self.get_url(url):
             playlist = Playlist(self.get_url)
             for video_url in playlist.video_urls:
-                self.url = video_url
-                self.tile = self.get_tile(self.get_url(video_url))
-                self.channel_name = self.get_channel_name(self.get_url(video_url))
-                self.thumbnail = self.get_thumbnail(self.get_url(video_url))
-                return
+                self.video = YouTube(video_url)
+                self.title = self.get_tile(video_url)
+                self.channel_name = self.get_channel_name(video_url)
+        else:
+            self.video = YouTube(self.video_url)
+            self.title = self.get_tile(video_url)
+            self.channel_name = self.get_channel_name(video_url)
+
+"""
 
 
+
+
+# url = "https://www.youtube.com/watch?v=cYWiDiIUxQc"
+# details = YouTubeBookMarker(url)
+# print(f"Video Name: {details.get_title()}, Channel Name: {details.get_channel_name()}")

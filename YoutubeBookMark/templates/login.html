@@ -4,29 +4,37 @@
 <head>
     <a href="{{url_for('index')}}">Home</a><br>
     <link rel="stylesheet" href="../static/css/table_styles.css">
-    <h1 class="signup">Sign in</h1>
+    <h1 class="register">Sign in</h1>
 </head>
 <body>
     <!-- Sing in area -->
-    <div class="containers">
-        <form class="signin_form">
-            <div>
-                <div>
-                    <input class="email" type="text" placeholder="email address" name="email">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-lg") }}
                 </div>
-                <div>
-                    <input class="email" name="password" type="password" placeholder="Password" name="password">
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-lg") }}
                 </div>
-                <div>
-                    <button class="button">
-                        Sign in
-                    </button>
-                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
             </div>
-                <div class="account_register">
-                    <a href="{{url_for('signup')}}">Don't have an account? Register</a><br>
-                </div>
+            <div class="bodder-top">
+                <small class="text-muted">
+                    <a class="ml-2" href="{{url_for('forgot_password')}}">Forgot password!</a>
+                </small>
+            </div>
         </form>
+        <div class="bodder-top">
+            <small class="text-muted">
+                Don't have an account? <a class="ml-2" href="{{url_for('signup')}}">Sign Up!</a>
+            </small>
+        </div>
     </div>
 </body>
 {% endblock %}

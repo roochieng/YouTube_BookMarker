@@ -5,33 +5,37 @@
 <head>
     <a href="{{url_for('index')}}">Home</a><br>
     <link rel="stylesheet" href="../static/css/table_styles.css">
-    <h1 class="signup">Register</h1>
+    <h1 class="register">Register</h1>
 </head>
 
 <body>
     <!-- Signup Area -->
-    <div class="containers">
-        <form class="form">
-            <div>
-                <div>
-                    <input class="email" type="text" placeholder="email address" name="email">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {{ form.email(class="form-control form-control-lg") }}
                 </div>
-                <div>
-                    <input class="email" name="password" type="password" placeholder="Password" name="password">
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {{ form.password(class="form-control form-control-lg") }}
                 </div>
-                <div>
-                    <input class="email" name="password" type="password" placeholder="Confirm Password" name="confirm_password">
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {{ form.confirm_password(class="form-control form-control-lg") }}
                 </div>
-                <div>
-                    <button class="button">
-                        Register
-                    </button>
-                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
             </div>
-                <div class="account_login">
-                    <a href="{{url_for('login')}}">Have an account? Login</a><br>
-                </div>
         </form>
+        <div class="bodder-top">
+            <small class="text-muted">
+                Have an account? <a class="ml-2" href="{{url_for('login')}}">Login!</a>
+            </small>
+        </div>
     </div>
 </body>
 {% endblock %}

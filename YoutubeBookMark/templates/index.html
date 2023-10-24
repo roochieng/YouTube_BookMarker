@@ -6,10 +6,10 @@
 </head>
 <body>
     <p>Welcome to YouTube BookMarker</p>
-    <div>
-        <a href="{{url_for('login')}}">Sign In</a><br>
-        <a href="{{url_for('signup')}}">Sign Up</a><br>
-        <a href="{{url_for('bookmarks')}}">Bookmarks</a><br>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="{{url_for('login')}}">Sign In</a><br>
+        <a class="nav-item nav-link" href="{{url_for('signup')}}">Register</a><br>
+        <a class="nav-item nav-link" href="{{url_for('bookmarks')}}">Bookmarks</a><br>
     </div>
     <div class="about">
         <p>
@@ -22,16 +22,8 @@
             Dashboard shows you a table of the bookmarks you 
             have added.
         </p>
-        <p class="disclaimer">
-            Disclaimer: This is not a YouTube competitor, 
-            and we are not promoting any form of piracy. All 
-            the rights of the videos belong to YouTube and 
-            Video owners. We are just complementing YouTube in 
-            this case.
-        </p>
     </div>
 
 </body>
-
 
 {% endblock %}
