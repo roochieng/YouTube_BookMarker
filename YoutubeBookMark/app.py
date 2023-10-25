@@ -52,6 +52,10 @@ def logout():
     logout_user()
     return render_template("index.html")
 
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    return render_template("home.html")
+
 
 @app.route("/forgot_password", methods=['GET', 'POST'])
 def forgot_password():

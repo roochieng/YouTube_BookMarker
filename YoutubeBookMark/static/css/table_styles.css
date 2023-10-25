@@ -97,40 +97,79 @@ tr:nth-child(even) {
 
 }
 
-/* Style the navigation bar */
-.navbar {
-    background-color: #333; /* Background color for the navigation bar */
+.bookmark-form-group {
+    margin-bottom: 30px;
 }
 
-.navbar-dark .navbar-toggler-icon {
-    background-color: #fff; /* Color of the navigation toggle button */
+.bookmark-form-group .btn {
+    width: 150px; /* Adjust the button's width as needed */
+    font-size: large;
+    margin: auto;
+    color: white;
+    background-color: rgb(143, 7, 7);
+    display: block;
+    font-family: Arial;
+    padding: 10px 20px; /* Adjust padding for the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
 }
 
-.navbar-brand {
-    color: #fff; /* Text color for the website name */
+.bookmark-form-group .btn:hover {
+    background-color: #3772ad; /* Change background color on hover */
+    color: rgb(143, 7, 7);
+    font-weight: bold;
 }
 
-.navbar-brand:hover {
-    color: #fff; /* Text color on hover for the website name */
+.bookmark-form-group input {
+    width: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+
 }
 
-/* Style the links in the navigation bar */
-.navbar-nav .nav-item .nav-link {
-    color: #fff; /* Text color for the links */
-    margin-right: 20px; /* Add margin between links */
+/* Style the labels to appear on top */
+.bookmark-form-group label {
+    display: block; /* Make labels block-level elements */
+    margin-bottom: 5px;
 }
 
-.navbar-nav .nav-item .nav-link:hover {
-    color: #007BFF; /* Text color on hover for links */
+.bookmark {
+    max-width: 800px; /* Set the maximum width of the content section */
+    margin: 0 auto; /* Center the content section horizontally */
+    padding: 20px; /* Add some padding to create space around the content */
 }
 
-/* Adjust the right alignment of links */
-.navbar-nav.ml-auto {
-    margin-right: 0;
+.note {
+    margin-top: 5px;
+    color: rgba(161, 5, 5, 0.671);
+
 }
 
-/* Style the navigation toggle button for small screens */
-.navbar-toggler {
-    border: none; /* Remove border around the button */
+/* Style the top navigation bar */
+.top-navbar {
+    background-color: #3772ad;
+    display: flex;
+    justify-content: flex-end; /* Align the other links to the top right */
+    padding: 10px 20px;
 }
 
+/* Style the "Home" link to be at the top left of the screen */
+.home-link {
+    color: #fff;
+    text-decoration: none;
+    position: absolute;
+    left: 20px; /* Adjust the left value as needed */
+    top: 10px; /* Adjust the top value as needed */
+}
+
+.top-navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size:large;
+}
+
+.top-navbar a:hover {
+    color: #000000;
+}
