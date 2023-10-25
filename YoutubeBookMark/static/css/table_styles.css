@@ -152,6 +152,7 @@ tr:nth-child(even) {
     display: flex;
     justify-content: flex-end; /* Align the other links to the top right */
     padding: 10px 20px;
+    font-size: large;
 }
 
 /* Style the "Home" link to be at the top left of the screen */
@@ -160,14 +161,16 @@ tr:nth-child(even) {
     text-decoration: none;
     position: absolute;
     left: 20px; /* Adjust the left value as needed */
-    top: 10px; /* Adjust the top value as needed */
+    top: 17px; /* Adjust the top value as needed */
+    font-size: large;
 }
 
 .top-navbar a {
     color: #fff;
     text-decoration: none;
     margin-right: 20px;
-    font-size:large;
+    font-size: large;
+
 }
 
 .top-navbar a:hover {
