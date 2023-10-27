@@ -2,36 +2,43 @@
 
 {% block body %}
 
-<head>
-    <link rel="stylesheet" href="../static/css/table_styles.css">
-    <h1>Dashboard</h1>
-</head>
+    <head>
+        <link rel="stylesheet" href="../static/css/table_styles.css">
+        <h1 class="register">Dashboard</h1>
+    </head>
 
-    <p>List of your Bookmarks</p>
-<table>
-    <tr>
-        <th>Url</th>
-        <th>Video Title</th>
-        <th>Channel Name</th>
-    </tr>
-    <tr>
-        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
-        <td>Django Tutorials</td>
-        <td>Corey Schafer Jamillah Mohamed</td>
-    </tr>
-        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p100203fuhjbcv</td>
-        <td>Django Tutorials</td>
-        <td>Corey Schafer</td>
-    <tr>
-        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
-        <td>Django Tutorials</td>
-        <td>Corey Schafer</td>
-    </tr>
-    <tr>
-        <td>https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p</td>
-        <td>Django Tutorials comming home</td>
-        <td>Corey Schafer techtember</td>
-    </tr>
+        <div>
+            <div class="text">
+                <p>List of your Bookmarks</p>
+            </div>
+            <div class="text2">
+                <small>
+                    <p>Click on video name to watch</p>
+                </small>
+            </div>
+        </div>
+
+    <table class="table">
+        {% if bookmarks %}
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                    <th>{{ header}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for bookmark in bookmarks %}
+                    <tr>
+                        <td class="link"><a href="{{bookmark.video_url}}", target="_blank">{{ bookmark.video_name }}</a></td>
+                        <td>{{ bookmark.channel_name }}</td>
+                        <td>{{ bookmark.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <p> You currently have no bookmark, click on <a class="bookmark-link" href ="{{url_for('bookmark')}}"> Add Bookmark </a> to bookmark a video</p>
+        {% endif %}
     </table>
 
 {% endblock %}

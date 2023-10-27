@@ -1,3 +1,7 @@
+    .table {
+        margin-left: 50px;
+    }
+    
     table th {
     border: 1px solid black;
     background-color: #afe4e4;
@@ -6,6 +10,7 @@
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    padding: 15px;
 }
 
 tr:nth-child(even) {
@@ -14,10 +19,9 @@ tr:nth-child(even) {
 }
 
 .about {
-    width: 700px;
-    height: 300px;
-    justify-content: center;
+    margin-top: 30px;
     font-family: Calibri;
+    margin-bottom: 30px;
 }
 
 .disclaimer {
@@ -27,9 +31,11 @@ tr:nth-child(even) {
     font-style: italic;
     color: red;
     font-size: smaller;
-    position: fixed;
+    position:fixed;
     left: 0;
     bottom: 0;
+    z-index: 2;
+    margin-top: 20px;
 
 }
 
@@ -97,6 +103,17 @@ tr:nth-child(even) {
 
 }
 
+.text {
+    display: flex;
+    margin-top: 5px;
+    font-size: large;
+    
+}
+.text2 {
+    margin-top: 2px;
+    text-decoration: underline;
+}
+
 .bookmark-form-group {
     margin-bottom: 30px;
 }
@@ -150,9 +167,12 @@ tr:nth-child(even) {
 .top-navbar {
     background-color: #3772ad;
     display: flex;
-    justify-content: flex-end; /* Align the other links to the top right */
-    padding: 10px 20px;
+    justify-content: flex-end;
+    padding: 10px;
     font-size: large;
+    top: 0; /* Stick the navigation bar to the top of the viewport */
+    z-index: 1000; /* Ensure it appears above other content */
+    position: sticky;
 }
 
 /* Style the "Home" link to be at the top left of the screen */
@@ -161,8 +181,15 @@ tr:nth-child(even) {
     text-decoration: none;
     position: absolute;
     left: 20px; /* Adjust the left value as needed */
-    top: 17px; /* Adjust the top value as needed */
     font-size: large;
+}
+
+
+/* Style the user-related links (e.g., "Logout" and "My Account") to the far right */
+.user-links {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+    /* Additional styling for the user-related links */
 }
 
 .top-navbar a {
@@ -175,4 +202,56 @@ tr:nth-child(even) {
 
 .top-navbar a:hover {
     color: #000000;
+}
+
+.link {
+    font-size: large;
+    text-decoration: none;
+
+}
+.link a {
+    text-decoration: none;
+
+}
+
+.link:hover {
+    background-color: rgba(161, 5, 5, 0.671);
+    color: white;
+
+}
+.link a:hover {
+    color: white;
+
+}
+
+.content-above-footer {
+    margin-bottom: 100px; /* Adjust the margin as needed to create space for the footer */
+    z-index: 1;
+    overflow-y: auto; /* Add a vertical scrollbar when the content exceeds the viewport height */
+}
+
+.last_five {
+    font-size: large;
+    font-weight: bold;
+}
+
+.watch_demo {
+    font-style: italic;
+    font-size: small;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detail {
+    margin-bottom: 20px;
+}
+
+.bookmark-link {
+    text-decoration: none;
+}
+
+.caution-note {
+    color:rgba(161, 5, 5, 0.671);
+    font-weight: bold;
 }

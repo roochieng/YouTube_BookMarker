@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import Length, ValidationError, DataRequired, Email, EqualTo
 from flask_login import login_user, login_required, logout_user, current_user
 from models.storage import User, BookMarks
@@ -45,11 +45,6 @@ class RegistrationForm(FlaskForm):
         Raises:
             ValidationError: _The error to raise if email exists_
         """
-        try:
-            valid = validate_email(email.data)
-            email.data = valid.email
-        except EmailNotValidError as e:
-            raise ValidationError('Invalid email address')
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('The email address is registered, log in or register with another email')
@@ -66,10 +61,16 @@ class LoginForm(FlaskForm):
                         render_kw={"placeholder": "email"})
     password = PasswordField('Password', validators=[DataRequired()],
                                     render_kw={"placeholder": "password"})
+    remember = BooleanField('Remember Me')
     submit = SubmitField("Sign in")
 
 
 class UrlBookmark(FlaskForm):
-    url = StringField('Video url', validators=[DataRequired()],
+    video_url = StringField('Video url', validators=[DataRequired()],
                       render_kw={"placeholder": "youtube video url"})
     submit = SubmitField('Bookmark')
+
+    def validate_video_url(self, video_url):
+        bookmark = BookMarks.query.filter_by(video_url=video_url.data).first()
+        if bookmark:
+            raise ValidationError('The video link is already bookmarked')

@@ -42,13 +42,14 @@ class BookMarks(db.Model):
         db: database model
     """
     id = db.Column(db.Integer, primary_key=True)
-    video_url = db.Column(db.String(200), nullable=False)
+    video_url = db.Column(db.String(250), nullable=False)
     video_name = db.Column(db.String(120), nullable=False)
     channel_name = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
-    def __init__(self, video_name, channel_name, date_created, user_id) -> None:
+    def __init__(self, video_url, video_name, channel_name, date_created, user_id=User.id) -> None:
+        self.video_url = video_url
         self.video_name = video_name
         self.channel_name = channel_name
         self.user_id = user_id
@@ -56,4 +57,4 @@ class BookMarks(db.Model):
 
 
     def __repr__(self):
-        return(f"BookMarks ('{self.title}', '{self.channel_name}', '{self.date_created}')")
+        return(f"BookMarks ('{self.video_url}', '{self.video_name}', '{self.channel_name}', '{self.date_created}')")

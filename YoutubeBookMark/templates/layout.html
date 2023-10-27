@@ -5,21 +5,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>YouTube BookMarker</title>
         <link rel="stylesheet" href="../static/css/table_styles.css">
-
         <nav class="top-navbar">
+
             <div class="home-link">
                 <a href="{{url_for('home')}}"> Home</a>
                 <a href="{{url_for('bookmarks')}}">Dashboard</a>
                 <a href="{{url_for('bookmark')}}"> Add Bookmark</a>
                 <a href="{{url_for('index')}}"> About</a>
-                <a href="#"> Demo</a>
+                <a href="{{url_for('demo')}}"> Demo</a>
             </div>
-            <a href="{{url_for('login')}}">Sign In</a>
-            <a href="{{url_for('signup')}}">Sign Up</a>
-            <a href="#">My Account</a>
+            <div class="user-links">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    <a href="#">My Account</a>
+                {% else %}
+                    <a href="{{url_for('login')}}">Login</a>
+                    <a href="{{url_for('signup')}}">Register</a>
+                {% endif %}
+            </div>
         </nav>
+        
+
     </head>
-    <body>
+    <body class="content-above-footer">
         {% block body %}{% endblock %}
     </body>
     <footer class="disclaimer">
