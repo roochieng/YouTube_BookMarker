@@ -255,3 +255,33 @@ tr:nth-child(even) {
     color:rgba(161, 5, 5, 0.671);
     font-weight: bold;
 }
+
+.flash-message {
+    color: rgba(161, 5, 5, 0.671);
+}
+
+.button:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+.button {
+    width: 100px;
+    height: 30px;
+    border-width: 0px;
+    justify-content: center;
+    display: flex;
+    border-radius: 4px;
+    font-size:large;
+    background-color: transparent;
+}
+
+.btn-adjst {
+    border-width: 0px;
+    justify-content: center;
+    display: flex;
+}
+
+.btn-adjst:hover {
+    background-color: red;
+}

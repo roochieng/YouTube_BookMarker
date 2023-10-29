@@ -1,5 +1,5 @@
 from collections.abc import Mapping, Sequence
-from config import db, login_manager
+from config import db, login_manager, migrate
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
@@ -47,13 +47,15 @@ class BookMarks(db.Model):
     channel_name = db.Column(db.String(200), nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    delete = db.Column(db.String(10), default='Delete', nullable=False)
 
-    def __init__(self, video_url, video_name, channel_name, date_created, user_id=User.id) -> None:
+    def __init__(self, video_url, video_name, channel_name, date_created, delete, user_id=User.id) -> None:
         self.video_url = video_url
         self.video_name = video_name
         self.channel_name = channel_name
         self.user_id = user_id
         self.date_created = datetime.utcnow()
+        self.delete = 'Delete'
 
 
     def __repr__(self):

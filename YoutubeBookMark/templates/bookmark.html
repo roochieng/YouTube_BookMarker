@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<head>
+    <!--<script src="{{ url_for('static', filename='scripts/reloadPage.js') }}"></script>-->
+    <link rel="stylesheet" href="../static/css/table_styles.css">
+</head>
+<body>
+    <p>Bookmark a YouTube Video by copying and pasting the url into the textbox and click Bookmark button.</p>
+    <div class="bookmark">
+        <div>
+            {% for message in get_flashed_messages() %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+        <form id="bookmark-form" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="bookmark-form-group">
+                <div class="bookmark-form-group">
+                    {{ form.video_url.label(class="form-control-label") }} <small class="note"> <a>Note: We are not supporting playlist and none YouTube Videos yet</a></small>
+                    {{ form.video_url(class="form-control form-control-lg") }}
+                </div>
+            </fieldset>
+            <div class="bookmark-form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+</body>
+
+{% endblock %}

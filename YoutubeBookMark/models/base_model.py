@@ -1,5 +1,4 @@
 from collections.abc import Mapping, Sequence
-from typing import Any
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
@@ -69,8 +68,3 @@ class UrlBookmark(FlaskForm):
     video_url = StringField('Video url', validators=[DataRequired()],
                       render_kw={"placeholder": "youtube video url"})
     submit = SubmitField('Bookmark')
-
-    def validate_video_url(self, video_url):
-        bookmark = BookMarks.query.filter_by(video_url=video_url.data).first()
-        if bookmark:
-            raise ValidationError('The video link is already bookmarked')
