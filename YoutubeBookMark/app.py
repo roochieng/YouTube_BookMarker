@@ -23,7 +23,7 @@ def index():
 def bookmarks():
     current_user = get_current_user()
     user_bookmarks = BookMarks.query.filter_by(user_id=current_user.id).all()
-    return render_template("bookmarks.html", bookmarks=user_bookmarks, headers=table_headers)
+    return render_template("bookmarks.html", bookmarks=user_bookmarks, table_headers=table_headers)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
