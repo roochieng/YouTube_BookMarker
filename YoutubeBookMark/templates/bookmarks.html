@@ -3,7 +3,9 @@
 {% block body %}
 
     <head>
-        <link rel="stylesheet" href="../static/css/table_styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/table_styles.css') }}">
+        <script src="{{ url_for('static', filename='scripts/confirm_delete.js') }}"></script>
+
         <h1 class="register">Dashboard</h1>
     </head>
 
@@ -17,7 +19,11 @@
                 </small>
             </div>
         </div>
-
+        <div>
+            {% for message in get_flashed_messages() %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
     <table class="table">
         {% if bookmarks %}
             <thead>
@@ -33,6 +39,9 @@
                         <td class="link"><a href="{{bookmark.video_url}}", target="_blank">{{ bookmark.video_name }}</a></td>
                         <td>{{ bookmark.channel_name }}</td>
                         <td>{{ bookmark.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td class="btn-adjst">
+                            <button class="button" onclick="confirmDelete({{ bookmark.id }})">Delete</button>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
