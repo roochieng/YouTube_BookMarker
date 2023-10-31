@@ -1,10 +1,10 @@
 from flask import render_template, request, url_for, flash, redirect
-from models.base_model import RegistrationForm, LoginForm, UrlBookmark
+from YoutubeBookMark.models.base_model import RegistrationForm, LoginForm, UrlBookmark
 from flask_sqlalchemy import SQLAlchemy
-from config import app, db, bcrypt
+from YoutubeBookMark.config import app, db, bcrypt
 from pytube import YouTube
-from models.storage import User, BookMarks
-from models.ytbookmarker import YouTubeBookMarker
+from YoutubeBookMark.models.storage import User, BookMarks
+from YoutubeBookMark.models.ytbookmarker import YouTubeBookMarker
 from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -82,18 +82,19 @@ def bookmark():
         if url:
             bookmarked = BookMarks.query.filter_by(user_id=current_user.id, video_url=url).all()
             if bookmarked:
-                flash(f"Warning! You cannot bookmark a duplicate video {YouTubeBookMarker(url).get_title()}.", "danger")
+                flash(f"Warning! You cannot bookmark a duplicate video: {YouTubeBookMarker(url).get_title()}.", "danger")
             else:
                 video = YouTubeBookMarker(url)
                 video_name = video.get_title()
                 channel_name = video.get_channel_name()
-                with app.app_context():
-                    bookmark = BookMarks(video_url=url, video_name=video_name, channel_name=channel_name, date_created=datetime.utcnow(), user_id=current_user.id, delete=action)
-                    db.session.add(bookmark)
-                    db.session.commit()
-                flash(f"Success! Bookmarked video with title: {video_name}! Check it on your Dashboard", 'success')
-        else:
-            flash("Please provide a valid URL.", 'danger')
+                if video_name != 'No video found.':
+                    with app.app_context():
+                        bookmark = BookMarks(video_url=url, video_name=video_name, channel_name=channel_name, date_created=datetime.utcnow(), user_id=current_user.id, delete=action)
+                        db.session.add(bookmark)
+                        db.session.commit()
+                    flash(f"Success! Bookmarked video with title: {video_name}! Check it on your Dashboard", 'success')
+                else:
+                    flash(f"Warninig! Please provide a valid YouTube video URL.", 'danger')
     return render_template("bookmark.html", form=form)
 
 

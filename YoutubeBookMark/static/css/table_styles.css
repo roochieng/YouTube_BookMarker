@@ -276,6 +276,11 @@ tr:nth-child(even) {
     background-color: transparent;
 }
 
+.button:hover {
+    color: #D6EEEE;
+    font-weight: bold;
+}
+
 .btn-adjst {
     border-width: 0px;
     justify-content: center;
@@ -284,4 +289,9 @@ tr:nth-child(even) {
 
 .btn-adjst:hover {
     background-color: red;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
 }

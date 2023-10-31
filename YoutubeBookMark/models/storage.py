@@ -1,5 +1,5 @@
 from collections.abc import Mapping, Sequence
-from config import db, login_manager, migrate
+from YoutubeBookMark.config import db, login_manager, migrate
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
