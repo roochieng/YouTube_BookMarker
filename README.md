@@ -28,9 +28,9 @@ click Demo to watch a video on how to navigate the YouTube BookMarker.
 ![Dashboard](YoutubeBookMark/static/images/dashboard.PNG)
 
 ### **Some things to note**
-This app is not yet supporting none YouTube videos.
-It is not yet supporting YouTube Playlists, which will be implemented soon.
-You cannot bookmark a video more than once
+- This app is not yet supporting none YouTube videos.
+- It is not yet supporting YouTube Playlists, which will be implemented soon.
+- You cannot bookmark a video more than once
 
 ### Security
 Users passwords are hashed to improve security.
