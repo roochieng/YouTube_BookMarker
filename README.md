@@ -1,4 +1,4 @@
-# <div align="center"> YouTube Book Marker </div>
+# <div align="center"> YouTube Video Book Marker </div>
 
 ## Overview
 
