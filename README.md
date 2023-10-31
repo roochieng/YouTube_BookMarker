@@ -38,10 +38,12 @@ Users passwords are hashed to improve security.
 
 ### Tools
 This project have been implemented by using:
+
 **Backend**:
 - Python
 - Flask
 - MySQL
+
 **Frontend**:
 - JavaScript
 - HTML5
