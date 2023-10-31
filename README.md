@@ -2,7 +2,7 @@
 
 ## Overview
 
-YouTube Book is a website that helps users bookmark youtube videos so they can
+YouTube Bookmarker is a website that helps users bookmark youtube videos so they can
 be able to watch them later without having to log into YouTube.
 This solution is intended to users who wants to save some YouTube Videos to
 watch later but do not want YouTube profiling their interests.
