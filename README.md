@@ -11,8 +11,8 @@ Video for a quick demo
 ## How To
 - Create an account.
 - Navigate to Add Bookmark.
-- Copy the YouTube video URL link and paste in the text section and click Bookmark.
-![](YoutubeBookMark/static/images/bookmark.png)
+- Copy the YouTube video URL link and paste in the text section and click Bookmark in the
+![Add Bookmark](YoutubeBookMark/static/images/bookmark.PNG)
 - ### To see the bookmarks
     - Navigate to Dashboard to find the list of your bookmarks.
     - This will show you a table format of your bookmarks.
@@ -25,7 +25,7 @@ About section shows how to navigate the website, but you can also
 click Demo to watch a video on how to navigate the YouTube BookMarker.
 
 #### Dashboard:
-![](YoutubeBookMark/static/images/dashboard.png)
+![Dashboard](YoutubeBookMark/static/images/dashboard.PNG)
 
 ### **Some things to note**
 This app is not yet supporting none YouTube videos.
