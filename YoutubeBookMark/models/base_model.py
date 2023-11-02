@@ -67,3 +67,45 @@ class UrlBookmark(FlaskForm):
     video_url = StringField('Video url', validators=[DataRequired()],
                       render_kw={"placeholder": "youtube video url"})
     submit = SubmitField('Bookmark')
+
+
+class Request_Password_resetForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()],
+                        render_kw={"placeholder": "email"})
+    submit = SubmitField('Reset')
+
+    def validate_email(self, email):
+        """validate user account creation by checking if email exists already
+
+        Args:
+            email (_type_): _parameter to check_
+
+        Raises:
+            ValidationError: _The error to raise if email exists_
+        """
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. Register first.')
+        
+
+class Password_ResetForm(FlaskForm):
+    """ Password reset method to allow user reset their password.
+    Validates if the account meets the requirements, and creates the account
+
+    Args:
+        FlaskForm (_type_): _Flask Object to process user login_
+
+    """
+    password = PasswordField('Password', validators=[DataRequired(),
+                                         Length(min=6, max=20)],
+                                    render_kw={"placeholder": "password"})
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')],
+                                    render_kw={"placeholder": "confirm password"})
+    submit = SubmitField("Reset")
+
+
+    
+class BookmarkSearchForm(FlaskForm):
+    video = StringField(validators=[DataRequired()],
+                        render_kw={"placeholder": "search video"})
+    submit = SubmitField('Search')
