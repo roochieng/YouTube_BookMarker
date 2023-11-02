@@ -1,12 +1,13 @@
 from collections.abc import Mapping, Sequence
-from YoutubeBookMark.config import db, login_manager, migrate
+from YoutubeBookMark.config import db, login_manager, migrate, app
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
-# import MySQLdb.cursors
+from itsdangerous import TimedSerializer as Serializer
 
-# Base = declarative_base()
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -26,6 +27,21 @@ class User(db.Model, UserMixin):
     date_created = db.Column(db.DateTime, nullable=False)
     bookmarks = db.relationship('BookMarks', backref='author', lazy=True)
 
+
+    @staticmethod
+    def get_token(self, expires_sec=1800):
+        serial = Serializer(app.secret_key, expires_sec)
+        return serial.dumps({'user_id': self.id}).decode('utf-8')
+    
+
+    @staticmethod
+    def verify_token(token):
+        serial = Serializer(app.secret_key)
+        try:
+            user_id = serial.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
 
     def __init__(self, email, password, date_created) -> None:
         self.email = email

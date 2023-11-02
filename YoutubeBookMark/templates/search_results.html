@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/table_styles.css') }}">
+        <script src="{{ url_for('static', filename='scripts/confirm_delete.js') }}"></script>
+
+        <h1 class="register">Search...</h1>
+    </head>
+
+        <div>
+            <div class="text">
+                <p>List of your Bookmarks videos matching search parameter</p>
+            </div>
+            <div class="text2">
+                <small>
+                    <p>Click on video name to watch or Delete to delete the video</p>
+                </small>
+            </div>
+        </div>
+        <div>
+            {% for message in get_flashed_messages() %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    <table class="table">
+        {% if videos %}
+            <thead>
+                <tr>
+                    {% for header in headers %}
+                    <th>{{ header}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for video in videos %}
+                    <tr>
+                        <td class="link"><a href="{{video.video_url}}", target="_blank">{{ video.video_name }}</a></td>
+                        <td>{{ video.channel_name }}</td>
+                        <td>{{ video.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td class="btn-adjst">
+                            <button class="button" onclick="confirmDelete({{ video.id }})">Delete</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% else %}
+            <p> You currently have no bookmark, click on <a class="bookmark-link" href ="{{url_for('bookmark')}}"> Add Bookmark </a> to bookmark a video</p>
+        {% endif %}
+    </table>
+
+{% endblock %}
