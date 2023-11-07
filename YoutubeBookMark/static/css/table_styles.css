@@ -41,6 +41,7 @@ tr:nth-child(even) {
 
 .register {
     text-align: center;
+    color: crimson;
 }
 
 .content-section {
@@ -294,4 +295,87 @@ tr:nth-child(even) {
 .video {
     display: flex;
     justify-content: center;
+}
+
+.landing_dashboard {
+    margin-left: 10px;
+}
+
+.landing_page {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.highlight {
+    margin-top: 30px;
+    font-weight: bold;
+    background-color: aqua;
+    margin-right: 20px;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+.stress {
+    margin-top: 30px;
+    font-weight: bold;
+    background-color: rgb(0, 132, 255);
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+
+}
+
+body {
+    background-color: rgb(231, 224, 224);
+}
+
+.overview {
+    display: flex;
+    justify-content: center;
+}
+
+.signup {
+    display: flex;
+    font-size: larger;
+    display: inline-flex;
+    flex-direction: row;
+    background-color: darkgreen;
+    border-radius: 10px;
+    font-weight: bolder;
+    padding: 5px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+
+}
+
+.delete {
+    font-size: larger;
+    display: inline-flex;
+    flex-direction: row;
+    background-color: darkgreen;
+    border-radius: 10px;
+    font-weight: bolder;
+    padding: 5px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.more_details {
+    display: grid;
+    justify-content: center;
+}
+
+.guide-form-group {
+    color: white;
+    background-color: rgb(143, 7, 7);
+    display: block;
+    font-family: Arial;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 8px;
+}
+
+.guide-form-group:hover {
+    background-color: #282829; /* Change background color on hover */
+    font-weight: bold;
 }

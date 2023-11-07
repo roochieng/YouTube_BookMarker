@@ -19,9 +19,21 @@ def get_current_user():
 table_headers = ("Video Name", "Channel Name", "Date Bookmarked", "Delete Bookmark")
 headers = ("Video Name", "Channel Name", "Date Bookmarked")
 
+
 @app.route("/")
-def index():
-    return render_template("index.html")
+def landding():
+    return render_template("landing_page.html")
+
+
+@app.route("/guide")
+def guide():
+    return render_template("guide.html")
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 @login_required
