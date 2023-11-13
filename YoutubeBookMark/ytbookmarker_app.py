@@ -1,12 +1,12 @@
 from flask import render_template, request, url_for, flash, redirect
-from YoutubeBookMark.models.base_model import (RegistrationForm, LoginForm, 
+from models.base_model import (RegistrationForm, LoginForm, 
                                                UrlBookmark, Password_ResetForm,
                                                Request_Password_resetForm, BookmarkSearchForm)
 from flask_sqlalchemy import SQLAlchemy
-from YoutubeBookMark.config import app, db, bcrypt, mail
+from config import app, db, bcrypt, mail
 from pytube import YouTube
-from YoutubeBookMark.models.storage import User, BookMarks
-from YoutubeBookMark.models.ytbookmarker import YouTubeBookMarker
+from models.storage import User, BookMarks
+from models.ytbookmarker import YouTubeBookMarker
 from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message

@@ -1,7 +1,6 @@
 import requests
-from pytube import YouTube, Channel, Playlist
-from pytube.exceptions import VideoUnavailable, RegexMatchError
-from PIL import Image
+from pytube import YouTube
+
 
 class YouTubeBookMarker:
     """
