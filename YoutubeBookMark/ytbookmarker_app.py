@@ -21,7 +21,7 @@ headers = ("Video Name", "Channel Name", "Date Bookmarked")
 
 
 @app.route("/")
-def landding():
+def landing():
     return render_template("landing_page.html")
 
 
@@ -73,7 +73,7 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('landing'))
 
 @app.route("/home", methods=['GET', 'POST'])
 @login_required
