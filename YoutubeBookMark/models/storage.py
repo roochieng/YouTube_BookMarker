@@ -1,4 +1,3 @@
-from collections.abc import Mapping, Sequence
 from config import db, login_manager, migrate, app
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
