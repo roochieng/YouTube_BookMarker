@@ -16,6 +16,7 @@
             {% endfor %}
         </div>
         <form method="POST" action="">
+            {{ form.csrf_token }}
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <div class="form-group">
