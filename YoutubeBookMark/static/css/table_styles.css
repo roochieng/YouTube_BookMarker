@@ -340,7 +340,6 @@ body {
     font-size: larger;
     display: inline-flex;
     flex-direction: row;
-    background-color: rgb(100, 0, 75);
     border-radius: 10px;
     font-weight: bolder;
     padding: 5px;
