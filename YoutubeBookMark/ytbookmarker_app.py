@@ -5,6 +5,7 @@ from models.base_model import (RegistrationForm, LoginForm,
 from config import app, db, bcrypt, mail
 from pytube import YouTube
 from models.storage import User, BookMarks
+from models.token_gen import confirm_token, send_confirmation_email
 from models.ytbookmarker import YouTubeBookMarker
 from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
@@ -47,12 +48,17 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            if user.confirmed:
+                login_user(user)
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('home'))
+            else:
+                flash('Please confirm your email address to log in.', 'warning')
+                return redirect(url_for('login'))
         else:
             flash('Login unsuccessful. Check email and password', 'danger')
-    return render_template("login.html", titel='login', form=form)
+    return render_template("login.html", title='Login', form=form)
+
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
@@ -64,9 +70,34 @@ def signup():
             user = User(email=form.email.data, password=hashed_pass, date_created=datetime.utcnow())
             db.session.add(user)
             db.session.commit()
-        flash(f"Account for email: {form.email.data} has been created!", "success")
+            send_confirmation_email(user.email)
+        flash(f"AA confirmation email has been sent to: {form.email.data} has been created!", "success")
         return redirect(url_for('login'))
     return render_template("signup.html", title='Register', form=form)
+
+# Email Confirmation
+@app.route('/confirm/<token>')
+def confirm_email(token):
+    try:
+        email = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or has expired.', 'danger')
+        return redirect(url_for('login'))
+
+    # Assuming you have a User model with an 'email' field and 'confirmed' boolean field
+    user = User.query.filter_by(email=email).first_or_404()
+    if user.confirmed:
+        flash('Account already confirmed. Please login.', 'success')
+    else:
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        flash('You have confirmed your account. Thanks!', 'success')
+    
+    return redirect(url_for('login'))
+
+
 
 @app.route("/logout", methods=['GET', 'POST'])
 @login_required

@@ -1,5 +1,5 @@
 from config import db, login_manager, migrate, app
-from datetime import datetime
+from datetime import datetime,timezone
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
@@ -13,7 +13,8 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
-    """An object to create new and manage users in the database
+    """
+    An object to create new and manage users in the database
 
     Args:
         db: database model
@@ -24,6 +25,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False)
+    confirmed = db.Column(db.Boolean, default=False)
+    confirmed_on = db.Column(db.DateTime, nullable=True)
     bookmarks = db.relationship('BookMarks', backref='author', lazy=True)
 
 
@@ -45,13 +48,14 @@ class User(db.Model, UserMixin):
     def __init__(self, email, password, date_created) -> None:
         self.email = email
         self.password = password
-        self.date_created = datetime.utcnow()
+        self.date_created = datetime.now(timezone.utc)
 
     def __repr__(self):
         return(f"User('{self.email}' '{self.date_created}')")
 
 class BookMarks(db.Model):
-    """Object for storing bookmark
+    """
+    Object for storing bookmark
 
     Args:
         db: database model
@@ -60,17 +64,15 @@ class BookMarks(db.Model):
     video_url = db.Column(db.String(250), nullable=False)
     video_name = db.Column(db.String(120), nullable=False)
     channel_name = db.Column(db.String(200), nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    date_created = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    delete = db.Column(db.String(10), default='Delete', nullable=False)
 
-    def __init__(self, video_url, video_name, channel_name, date_created, delete, user_id=User.id) -> None:
+    def __init__(self, video_url, video_name, channel_name, date_created, user_id=User.id) -> None:
         self.video_url = video_url
         self.video_name = video_name
         self.channel_name = channel_name
         self.user_id = user_id
-        self.date_created = datetime.utcnow()
-        self.delete = 'Delete'
+        self.date_created = datetime.now(timezone.utc)
 
 
     def __repr__(self):
