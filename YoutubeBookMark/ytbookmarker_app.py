@@ -1,16 +1,17 @@
 from flask import render_template, request, url_for, flash, redirect
-from models.base_model import (RegistrationForm, LoginForm, 
+from YoutubeBookMark.models.base_model import (RegistrationForm, LoginForm, 
                                                UrlBookmark, Password_ResetForm,
                                                Request_Password_resetForm, BookmarkSearchForm)
-from config import app, db, bcrypt, mail
+from YoutubeBookMark.config import app, db, bcrypt, mail
 from pytube import YouTube
-from models.storage import User, BookMarks
-from models.token_gen import confirm_token, send_confirmation_email
-from models.ytbookmarker import YouTubeBookMarker
+from YoutubeBookMark.models.storage import User, BookMarks
+from YoutubeBookMark.models.token_gen import confirm_token, send_confirmation_email
+from YoutubeBookMark.models.ytbookmarker import YouTubeBookMarker
 from datetime import datetime
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from elasticsearch import Elasticsearch
+
 
 
 def get_current_user():
@@ -71,7 +72,7 @@ def signup():
             db.session.add(user)
             db.session.commit()
             send_confirmation_email(user.email)
-        flash(f"AA confirmation email has been sent to: {form.email.data} has been created!", "success")
+        flash(f"A confirmation email has been sent to: {form.email.data} has been created!", "success")
         return redirect(url_for('login'))
     return render_template("signup.html", title='Register', form=form)
 
@@ -84,7 +85,6 @@ def confirm_email(token):
         flash('The confirmation link is invalid or has expired.', 'danger')
         return redirect(url_for('login'))
 
-    # Assuming you have a User model with an 'email' field and 'confirmed' boolean field
     user = User.query.filter_by(email=email).first_or_404()
     if user.confirmed:
         flash('Account already confirmed. Please login.', 'success')

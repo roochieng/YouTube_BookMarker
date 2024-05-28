@@ -22,21 +22,28 @@ tr:nth-child(even) {
     margin-top: 30px;
     font-family: Calibri;
     margin-bottom: 30px;
+    padding: 20px;
+}
+
+
+.abouts {
+    padding-left: 10px;
 }
 
 .disclaimer {
-    margin-bottom: 5px;
     font-weight: bold;
     font-family: Arial;
     font-style: italic;
     color: red;
     font-size: smaller;
-    position:fixed;
     left: 0;
     bottom: 0;
     z-index: 2;
-    margin-top: 20px;
-
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 100%;
 }
 
 .register {
@@ -226,9 +233,7 @@ tr:nth-child(even) {
 }
 
 .content-above-footer {
-    margin-bottom: 100px; /* Adjust the margin as needed to create space for the footer */
-    z-index: 1;
-    overflow-y: auto; /* Add a vertical scrollbar when the content exceeds the viewport height */
+    flex: 1;
 }
 
 .last_five {
@@ -328,7 +333,13 @@ tr:nth-child(even) {
 
 body {
     background-color: rgb(231, 224, 224);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
+
 
 .overview {
     display: flex;

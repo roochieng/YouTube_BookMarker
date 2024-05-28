@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_mail import Mail
-
-
+from YoutubeBookMark.cnf import Config
 
 app = Flask(__name__, '/static')
 
@@ -26,6 +25,9 @@ app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+app.config.from_object(Config)
+
+
 mail = Mail(app)
 
 

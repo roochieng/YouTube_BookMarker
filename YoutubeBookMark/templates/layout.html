@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>YouTube BookMarker</title>
         <link rel="icon" href="../static/images/logo.png" type="image/png">
-            
         <link rel="stylesheet" href="../static/css/table_styles.css">
+    </head>
+    <body class="content-above-footer">
         <nav class="top-navbar">
-
             <div class="home-link">
                 <a href="{{url_for('home')}}"> Home</a>
                 <a href="{{url_for('bookmarks')}}">Dashboard</a>
@@ -27,17 +27,13 @@
                 {% endif %}
             </div>
         </nav>
-        
-
-    </head>
-    <body class="content-above-footer">
         {% block body %}{% endblock %}
+        <footer class="disclaimer">
+            <small>All 
+                the rights of the videos belong to YouTube and 
+                Video owners. We are just complementing YouTube in 
+                this case.
+            </small>
+        </footer>
     </body>
-    <footer class="disclaimer">
-        Disclaimer: This is not a YouTube competitor, 
-        and we are not promoting any form of piracy. All 
-        the rights of the videos belong to YouTube and 
-        Video owners. We are just complementing YouTube in 
-        this case.
-    </footer>
 </html>

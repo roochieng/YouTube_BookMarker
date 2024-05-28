@@ -1,4 +1,3 @@
-import requests
 from pytube import YouTube
 
 

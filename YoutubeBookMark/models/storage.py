@@ -1,4 +1,4 @@
-from config import db, login_manager, migrate, app
+from YoutubeBookMark.config import db, login_manager, migrate, app
 from datetime import datetime,timezone
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
