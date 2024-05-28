@@ -377,8 +377,8 @@ body {
 }
 
 .guide-form-group {
-    color: white;
-    background-color: rgb(143, 7, 7);
+    /*color: white;*/
+    background-color: rgb(146, 221, 240);
     display: block;
     font-family: Arial;
     cursor: pointer; /* Change cursor to pointer on hover */
@@ -386,6 +386,6 @@ body {
 }
 
 .guide-form-group:hover {
-    background-color: #282829; /* Change background color on hover */
+    background-color: #aeaef5; /* Change background color on hover */
     font-weight: bold;
 }
