@@ -19,7 +19,7 @@ class YouTubeBookMarker:
         self.channel_name = self.get_channel_name()
     
     def __repr__(self):
-        return(f"'url': '{self.url}', 'video name': '{self.title}', 'channel name': '{self.channel_name}'")
+        return (f"'url': '{self.url}', 'video name': '{self.title}', 'channel name': '{self.channel_name}'")
 
     # bookmarks = {}
 
@@ -38,46 +38,20 @@ class YouTubeBookMarker:
     def get_title(self) -> str:
         # Get the video name
         if self.get_url():
-            author = self.get_url().title
+            vid_title = self.get_url().title
         else:
-            author = 'No video found.'
-        return(author)
+            vid_title = 'No video found.'
+        return(vid_title)
     
 
     def get_channel_name(self) -> str:
         if self.get_url():
             # Get the author of the video
-            author = self.get_url().author
+            c_name = self.get_url().author
         else:
-            author = 'No Channel Name found'
-        return (author)
-    
+            c_name  = 'No Channel Name found'
+        return (c_name )
 
-    # For future updates
-    """
-    def get_thumbnail(self, url):
-        # Get the video thumbnail
-        resized_image = self.get_url.thumbnail.resize((100, 100))
-        return (resized_image)
-    
-
-    def get_playlist(self, url):
-        if "list=" in self.get_url(url):
-            playlist = Playlist(self.get_url)
-            for video_url in playlist.video_urls:
-                self.video = YouTube(video_url)
-                self.title = self.get_tile(video_url)
-                self.channel_name = self.get_channel_name(video_url)
-        else:
-            self.video = YouTube(self.video_url)
-            self.title = self.get_tile(video_url)
-            self.channel_name = self.get_channel_name(video_url)
-
-"""
-
-
-
-
-# url = "https://www.youtube.com/watch?v=cYWiDiIUxQc"
-# details = YouTubeBookMarker(url)
-# print(f"Video Name: {details.get_title()}, Channel Name: {details.get_channel_name()}")
+# my_url = "https://www.youtube.com/watch?v=z18nw4adsx4"
+# vid = YouTubeBookMarker(my_url)
+# print(vid.get_title())

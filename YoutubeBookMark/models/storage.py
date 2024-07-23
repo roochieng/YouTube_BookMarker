@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
         self.date_created = datetime.now(timezone.utc)
 
     def __repr__(self):
-        return(f"User('{self.email}' '{self.date_created}')")
+        return(f"Email: {self.email}, Date_created: {self.date_created}")
 
 class BookMarks(db.Model):
     """
@@ -76,4 +76,4 @@ class BookMarks(db.Model):
 
 
     def __repr__(self):
-        return(f"BookMarks ('{self.video_url}', '{self.video_name}', '{self.channel_name}', '{self.date_created}')")
+        return (f"Video_url: {self.video_url}, Video_name: {self.video_name}, Author: {self.channel_name}, Date_created: {self.date_created}")

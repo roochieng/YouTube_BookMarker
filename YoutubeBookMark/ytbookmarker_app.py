@@ -3,7 +3,6 @@ from YoutubeBookMark.models.base_model import (RegistrationForm, LoginForm,
                                                UrlBookmark, Password_ResetForm,
                                                Request_Password_resetForm, BookmarkSearchForm)
 from YoutubeBookMark.config import app, db, bcrypt, mail
-from pytube import YouTube
 from YoutubeBookMark.models.storage import User, BookMarks
 from YoutubeBookMark.models.token_gen import confirm_token, send_confirmation_email
 from YoutubeBookMark.models.ytbookmarker import YouTubeBookMarker

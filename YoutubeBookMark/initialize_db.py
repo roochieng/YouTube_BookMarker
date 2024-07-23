@@ -1,5 +1,5 @@
 from config import db, app
-from models.storage import User, BookMarks
+from YoutubeBookMark.models.storage import User, BookMarks
 
 def initialize_database():
     with app.app_context():
